@@ -22,7 +22,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.white12,
       body: SafeArea(
         child: Center(
           child: Padding(
@@ -32,11 +32,7 @@ class _RegisterPageState extends State<RegisterPage> {
               children: [
                 const SizedBox(height: 10),
 
-                // Logo
-                const Icon(
-                  Icons.lock,
-                  size: 100,
-                ),
+                Image.asset('assets/images/reg.jpg'),
 
                 const SizedBox(height: 20),
 
@@ -74,7 +70,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
                 const SizedBox(height: 20),
 
-                // Sign-in Button
+                // Sign-up Button
                 MyButton(
                   onTap: () {},
                   text: 'Sign Up',

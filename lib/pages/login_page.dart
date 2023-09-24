@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:social_media_app/components/button.dart';
 import 'package:social_media_app/components/text_field.dart';
@@ -18,10 +19,32 @@ class _LoginPageState extends State<LoginPage> {
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
 
+  // sign user in
+  void signIn() async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailTextController.text,
+        password: passwordTextController.text,
+      );
+    } on FirebaseAuthException catch (e) {
+      displayMessage(e.code);
+    }
+  }
+
+  // display a dialog message
+  void displayMessage(String message) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(message),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Center(
           child: Padding(
@@ -66,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
 
                 // Sign-in Button
                 MyButton(
-                  onTap: () {},
+                  onTap: signIn,
                   text: 'Sign In',
                 ),
 
